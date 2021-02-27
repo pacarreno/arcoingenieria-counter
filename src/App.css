@@ -1,38 +1,43 @@
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  border: black solid 1px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  width: calc(100% * (1/4) - 60px - 1px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card:active { 
+  transform: scale(0.98); 
+  /* Scaling button to 0.98 to its original size */ 
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+  /* Lowering the shadow */ 
+} 
+
+.card-details {
+  border-bottom: gray solid 1px;
+  margin-bottom: 20px;
 }
+
+.card img{
+  width: 100%;
+  height: 150px;
+}
+
+.large-font {
+  font-size : 44px;
+  font-weight: bold;
+}
+
+@import '~antd/dist/antd.css';
