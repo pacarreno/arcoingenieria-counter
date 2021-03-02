@@ -1,6 +1,23 @@
 
 .App {
   text-align: center;
+  background-color: white;
+}
+
+.layout {
+  background-color: white;
+}
+
+.ant-list-item:hover {
+  background-color:#e0dada;
+  box-shadow: 0 0 4px #eee;
+  cursor: pointer;
+}
+
+.ant-list-item:active {
+  background-color:#d3d0d0;
+  box-shadow: 0 0 4px #eee;
+  cursor: pointer;
 }
 
 .wrapper {
