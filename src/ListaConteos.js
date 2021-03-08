@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { List, Space } from 'antd';
+import { List, Space, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import useConteos from "./graphql/useConteos";
 import Loading from "./componentes/Loading";
+import useConteos from "./graphql/useConteos";
 import moment from 'moment';
 
-function ListaConteos(props) {
+function ListaConteos({ conteos, loading }) {
 
+    const { deleteConteo } = useConteos();
     const history = useHistory();
-    const handleClick = (conteo) => { history.push(`/editar/${conteo.id}`); }
+    const handleClick = (conteo) => { history.push(`/editar/${conteo._id}`); }
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -17,34 +18,11 @@ function ListaConteos(props) {
         </Space>
     );
 
-    const { conteos, addConteo, loading } = useConteos();
-    /*
-        if (!loading) {
-            let i = 1;
-            addConteo({
-                id: i + 1,
-                nombre: `Conteo ${i}`,
-                fecha: moment().add(i, 'd').format("DD-MM-YYYY"),
-                interseccion: `Intersección ${i}`,
-                movimiento: `Movimiento ${i}`,
-                sentido: `Sentido ${i}`,
-                contadores: {
-                    autos_liviano: Math.floor(Math.random() * 10),
-                    taxi: Math.floor(Math.random() * 10) + 1,
-                    taxi_colectivo: Math.floor(Math.random() * 10),
-                    bus: Math.floor(Math.random() * 10),
-                    taxi_bus: Math.floor(Math.random() * 10),
-                    bus_interurbano: Math.floor(Math.random() * 10),
-                    camion_2_ejes: Math.floor(Math.random() * 10),
-                    trailer_y_semi: Math.floor(Math.random() * 10),
-                    camion_cisterna: Math.floor(Math.random() * 10),
-                    camion_grano: Math.floor(Math.random() * 10),
-                    motos: Math.floor(Math.random() * 10),
-                    bicicleta: Math.floor(Math.random() * 10)
-                }
-            })
-        }
-    */
+    const handleDeleteConteo = (conteo) => {
+        deleteConteo(conteo)
+        return;
+    }
+
     return loading ? (
         <Loading />
     ) : (
@@ -60,7 +38,7 @@ function ListaConteos(props) {
                 dataSource={conteos}
                 renderItem={item => (
                     <List.Item
-                        key={item.nombre}
+                        key={item._id}
                         onClick={() => handleClick(item)}
                     >
                         <List.Item.Meta
@@ -68,7 +46,8 @@ function ListaConteos(props) {
                             description={`fecha ${item.fecha} ${item.interseccion} ${item.movimiento} ${item.sentido}`}
                         />
                         {item.nombre}
-                    </List.Item>
+                        <Button type="primary" onClick={() => { handleDeleteConteo(item); return false; }} >Eliminar</Button>
+                    </ List.Item>
                 )}
             />
         );

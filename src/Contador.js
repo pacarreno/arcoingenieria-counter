@@ -3,12 +3,27 @@ import ContadorVehiculo from './ContadorVehiculo'
 
 function Contador(props) {
 
+    const keys = [
+        "autos_liviano",
+        "bicicleta",
+        "bus",
+        "bus_interurbano",
+        "camion_2_ejes",
+        "camion_cisterna",
+        "camion_grano",
+        "motos",
+        "taxi",
+        "taxi_bus",
+        "taxi_colectivo",
+        "trailer_y_semi",
+    ]
+
     return (
         <div>
             <h2>{props.conteoInfo.nombre}</h2>
             <div className="wrapper" >
                 {
-                    Object.keys(props.conteoInfo.contadores).map(function (element, i) {
+                    keys.map(function (element, i) {
                         return (
                             <ContadorVehiculo
                                 key={i}

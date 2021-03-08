@@ -15,7 +15,7 @@ function EditarConteo(props) {
     const history = useHistory();
     const handleClick = () => {
         // TODO guardar en base de datos en caso que sea nuevo
-        history.push(`/contador/${conteo.id}`);
+        history.push(`/contador/${conteo._id}`);
     }
 
     return (
