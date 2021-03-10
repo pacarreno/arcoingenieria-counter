@@ -182,9 +182,20 @@ function useUpdateConteo() {
   };
   return updateConteo;
 }
-// TODO quitar elemento del cache
 function useDeleteConteo() {
-  const [deleteConteoMutation] = useMutation(DeleteConteoMutation);
+  const [deleteConteoMutation] = useMutation(DeleteConteoMutation, {
+    update: (cache, { data: { deletedConteo } }) => {
+      cache.modify({
+        fields: {
+          conteos(existingConteoRefs, { readField }) {
+            return existingConteoRefs.filter(
+              conteoRef => deletedConteo._id !== readField('_id', conteoRef)
+            );
+          },
+        },
+      });
+    },
+  });
   const deleteConteo = async (conteo) => {
     const { deletedConteo } = await deleteConteoMutation({
       variables: { conteoId: conteo._id },

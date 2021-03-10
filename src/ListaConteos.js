@@ -17,8 +17,9 @@ function ListaConteos({ conteos, loading }) {
             {text}
         </Space>
     );
-
-    const handleDeleteConteo = (conteo) => {
+    // TODO cambiar al estado loading mientras se borrar
+    const handleDeleteConteo = (e, conteo) => {
+        e.stopPropagation();
         deleteConteo(conteo)
         return;
     }
@@ -26,31 +27,31 @@ function ListaConteos({ conteos, loading }) {
     return loading ? (
         <Loading />
     ) : (
-            <List
-                itemLayout="vertical"
-                size="large"
-                pagination={{
-                    onChange: page => {
-                        console.log(page);
-                    },
-                    pageSize: 3,
-                }}
-                dataSource={conteos}
-                renderItem={item => (
-                    <List.Item
-                        key={item._id}
-                        onClick={() => handleClick(item)}
-                    >
-                        <List.Item.Meta
-                            title={item.nombre}
-                            description={`fecha ${item.fecha} ${item.interseccion} ${item.movimiento} ${item.sentido}`}
-                        />
-                        {item.nombre}
-                        <Button type="primary" onClick={() => { handleDeleteConteo(item); return false; }} >Eliminar</Button>
-                    </ List.Item>
-                )}
-            />
-        );
+        <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+                onChange: page => {
+                    console.log(page);
+                },
+                pageSize: 3,
+            }}
+            dataSource={conteos}
+            renderItem={item => (
+                <List.Item
+                    key={item._id}
+                    onClick={() => handleClick(item)}
+                >
+                    <List.Item.Meta
+                        title={item.nombre}
+                        description={`fecha ${item.fecha} ${item.interseccion} ${item.movimiento} ${item.sentido}`}
+                    />
+                    {item.nombre}
+                    <Button type="primary" onClick={(e) => { handleDeleteConteo(e, item); return false; }} >Eliminar</Button>
+                </ List.Item>
+            )}
+        />
+    );
 }
 
 export default ListaConteos;

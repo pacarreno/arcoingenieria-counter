@@ -18,6 +18,7 @@ function EditarConteo(props) {
     function handleChangeMovimiento(e) { setConteo({ ...conteo, movimiento: e.target.value }) }
     function handleChangeSentido(e) { setConteo({ ...conteo, sentido: e.target.value }) }
     const history = useHistory();
+    // TODO cambiar al estado loading mientras se crea/actualiza
     const handleClick = async () => {
         if (!conteo._id) {
             try {
