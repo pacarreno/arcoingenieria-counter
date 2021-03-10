@@ -42,6 +42,8 @@ function App() {
           <Route path="/editar/:id" render={(props) => {
             const conteoId = props.location.pathname.replace("/editar/", "");
             const conteo = conteos.find(el => el._id == conteoId);
+            if (!_.isObject(conteo))
+              return <NotFound />
             return <EditarConteo conteo={conteo} />
           }} />
           <Route path="/nuevo">
@@ -51,6 +53,8 @@ function App() {
             const conteoId = props.location.pathname.replace("/contador/", "");
             const conteoPos = conteos.findIndex(el => el._id == conteoId);
             const conteo = conteos[conteoPos];
+            if (!_.isObject(conteo))
+              return <NotFound />
             return <Contador
               conteoInfo={conteo}
               setValue={(tipo_vehiculo, valor) => {

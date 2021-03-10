@@ -26,6 +26,7 @@ function useAllConteos() {
           interseccion
           movimiento
           sentido
+          usuario
           contadores {
             autos_liviano
             bicicleta

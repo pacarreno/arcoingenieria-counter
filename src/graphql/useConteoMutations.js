@@ -1,6 +1,7 @@
 import { ObjectId } from "bson";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import omitDeep from 'omit-deep';
 
 export default function useConteoMutations() {
   return {
@@ -19,6 +20,7 @@ const AddConteoMutation = gql`
       interseccion
       movimiento
       sentido
+      usuario
       contadores {
         autos_liviano
         bicicleta
@@ -46,6 +48,7 @@ const UpdateConteoMutation = gql`
       interseccion
       movimiento
       sentido
+      usuario
       contadores {
         autos_liviano
         bicicleta
@@ -73,6 +76,7 @@ const DeleteConteoMutation = gql`
       interseccion
       movimiento
       sentido
+      usuario
       contadores {
         autos_liviano
         bicicleta
@@ -99,20 +103,21 @@ const ConteoFieldsFragment = gql`
     interseccion
     movimiento
     sentido
+    usuario
     contadores {
-        autos_liviano
-        bicicleta
-        bus
-        bus_interurbano
-        camion_2_ejes
-        camion_cisterna
-        camion_grano
-        motos
-        taxi
-        taxi_bus
-        taxi_colectivo
-        trailer_y_semi
-      }
+      autos_liviano
+      bicicleta
+      bus
+      bus_interurbano
+      camion_2_ejes
+      camion_cisterna
+      camion_grano
+      motos
+      taxi
+      taxi_bus
+      taxi_colectivo
+      trailer_y_semi
+    }
   }
 `;
 
@@ -135,34 +140,49 @@ function useAddConteo() {
     },
   });
 
-  const addConteo = async (conteo) => {
-    const { addedConteo } = await addConteoMutation({
-      variables: {
-        conteo: {
-          _id: new ObjectId(),
-          ...conteo,
-        },
+  const addConteo = async (conteo, usuario) => {
+    const newConteo = {
+      usuario,
+      contadores: {
+        autos_liviano: 0,
+        bicicleta: 0,
+        bus: 0,
+        bus_interurbano: 0,
+        camion_2_ejes: 0,
+        camion_cisterna: 0,
+        camion_grano: 0,
+        motos: 0,
+        taxi: 0,
+        taxi_bus: 0,
+        taxi_colectivo: 0,
+        trailer_y_semi: 0,
       },
+      ...conteo,
+    };
+    const result = await addConteoMutation({
+      variables: {
+        conteo: newConteo,
+      }
     });
-    return addedConteo;
+
+    return result.data.addedConteo;
   };
 
   return addConteo;
 }
 
 function useUpdateConteo() {
-  const [updateConteoMutation] = useMutation(UpdateConteoMutation, {
-    refetchQueries: ['GetAllConteos']
-  });
+  const [updateConteoMutation] = useMutation(UpdateConteoMutation);
   const updateConteo = async (conteo, updates) => {
+    const cleanUpdates = omitDeep(updates, '__typename')
     const { updatedConteo } = await updateConteoMutation({
-      variables: { conteoId: conteo._id, updates },
+      variables: { conteoId: conteo._id, updates: cleanUpdates },
     });
     return updatedConteo;
   };
   return updateConteo;
 }
-
+// TODO quitar elemento del cache
 function useDeleteConteo() {
   const [deleteConteoMutation] = useMutation(DeleteConteoMutation);
   const deleteConteo = async (conteo) => {

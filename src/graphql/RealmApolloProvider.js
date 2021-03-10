@@ -26,14 +26,7 @@ const createRealmApolloClient = (app) => {
     },
   });
 
-  const cache = new InMemoryCache({
-    addTypename: false,
-    typePolicies: {
-      conteos: {
-        keyFields: ["_id"]
-      }
-    }
-  });
+  const cache = new InMemoryCache();
 
   return new ApolloClient({ link, cache });
 };
