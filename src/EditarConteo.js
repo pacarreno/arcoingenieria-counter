@@ -32,6 +32,8 @@ function EditarConteo(props) {
         history.push(`/contador/${conteo._id}`);
     }
 
+    // TODO actualizar fecha correctamente
+    // TODO dejar los tipos de intersecciones seleccionables
     return (
         <>
             <Row>
