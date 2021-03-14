@@ -8,8 +8,10 @@ import moment from 'moment';
 function ListaConteos({ conteos, loading }) {
 
     const { deleteConteo } = useConteos();
+    const [loading2, setLoading2] = useState(false)
+
     const history = useHistory();
-    const handleClick = (conteo) => { history.push(`/editar/${conteo._id}`); }
+    const handleClick = (conteo) => { try { setLoading2(true); history.push(`/editar/${conteo._id}`); } finally { setLoading2(false) } }
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -24,6 +26,7 @@ function ListaConteos({ conteos, loading }) {
         return;
     }
 
+    //TODO mejorar diseño de lista
     return loading ? (
         <Loading />
     ) : (
@@ -47,7 +50,7 @@ function ListaConteos({ conteos, loading }) {
                         description={`fecha ${item.fecha} ${item.interseccion} ${item.movimiento} ${item.sentido}`}
                     />
                     {item.nombre}
-                    <Button type="primary" onClick={(e) => { handleDeleteConteo(e, item); return false; }} >Eliminar</Button>
+                    <Button type="primary" loading={loading2} onClick={(e) => { handleDeleteConteo(e, item); return false; }} >Eliminar</Button>
                 </ List.Item>
             )}
         />

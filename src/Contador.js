@@ -17,7 +17,7 @@ function Contador(props) {
         "taxi_colectivo",
         "trailer_y_semi",
     ]
-
+    //TODO mejorar diseño de botones
     return (
         <div>
             <h2>{props.conteoInfo.nombre}</h2>

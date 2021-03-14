@@ -10,6 +10,7 @@ import { useRealmApp } from "./RealmApp";
 function EditarConteo(props) {
 
     const app = useRealmApp();
+    const [loading, setLoading] = useState(false)
     const [conteo, setConteo] = useState(props.conteo)
     const { addConteo, updateConteo } = useConteos();
 
@@ -19,19 +20,22 @@ function EditarConteo(props) {
     function handleChangeMovimiento(e) { setConteo({ ...conteo, movimiento: e.target.value }) }
     function handleChangeSentido(e) { setConteo({ ...conteo, sentido: e.target.value }) }
     const history = useHistory();
-    // TODO cambiar al estado loading mientras se crea/actualiza
     const handleClick = async () => {
         if (!conteo._id) {
             try {
+                setLoading(true)
                 const data = await addConteo(conteo, app.currentUser.id)
                 history.push(`/contador/${data._id}`);
                 return;
             } catch (error) {
                 console.log(error);
                 return;
+            } finally {
+                setLoading(false)
             }
         } else {
             try {
+                setLoading(true)
                 const newObject = _.cloneDeep(conteo);
                 await updateConteo(conteo, newObject)
                 history.push(`/contador/${conteo._id}`);
@@ -39,6 +43,8 @@ function EditarConteo(props) {
             } catch (error) {
                 console.log(error);
                 return;
+            } finally {
+                setLoading(false)
             }
         }
     }
@@ -94,7 +100,7 @@ function EditarConteo(props) {
             </Row>
             <Row >
                 <Col span={4} offset={9}  >
-                    <Button type="primary" onClick={() => handleClick()} >{!conteo._id ? "Iniciar nuevo Conteo" : "Ver Conteo"}</Button>
+                    <Button type="primary" loading={loading} onClick={() => handleClick()} >{!conteo._id ? "Iniciar nuevo Conteo" : "Ver Conteo"}</Button>
                 </Col>
             </Row>
         </>

@@ -18,7 +18,7 @@ function ContadorVehiculo(props) {
         if (newCounter >= 0)
             setCounter(newCounter)
     }
-
+    //TODO permitir que el número del botón sea editable
     return (
         <div key={props.tipo_vehiculo} className="card" >
             <div className="large-font" >{counter}</div>

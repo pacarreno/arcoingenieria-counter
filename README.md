@@ -1,4 +1,16 @@
-TODO subir versión a heroku
-TODO documentar comandos para subir aplicación a heroku
-TODO realizar testing
-TODO quitar warnings
+## SUBIR PROYECTO A HEROKU
+# 
+
+```bash
+heroku login
+git heroku push main
+```
+
+La aplicación quedará desplegada en :
+
+https://powerful-headland-69503.herokuapp.com/
+
+
+- TODO realizar testing
+- TODO quitar warnings
+- TODO diseño responsive
