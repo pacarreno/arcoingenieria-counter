@@ -14,11 +14,11 @@ function EditarConteo(props) {
     const app = useRealmApp();
     const [loading, setLoading] = useState(false)
     const [conteo, setConteo] = useState(props.conteo)
-    const [tipoCruce, setTipoCruce] = useState()
+    const [tipoCruce, setTipoCruce] = useState(conteo.interseccion)
     const { addConteo, updateConteo } = useConteos();
 
     function handleChangeNombre(e) { setConteo({ ...conteo, nombre: e.target.value }) }
-    function handleChangeInterseccion(value) { setConteo({ ...conteo, interseccion: value }); console.log(value); setTipoCruce(value) }
+    function handleChangeInterseccion(value) { setConteo({ ...conteo, interseccion: value }); setTipoCruce(value) }
     function handleChangeFecha(date, dateString) { if (!date) return; const newObject = { ...conteo, fecha: date.toISOString() }; setConteo(newObject); }
     function handleChangeMovimiento(e) { setConteo({ ...conteo, movimiento: e.target.value }) }
     function handleChangeSentido(e) { setConteo({ ...conteo, sentido: e.target.value }) }
@@ -62,7 +62,7 @@ function EditarConteo(props) {
                     {
                         //<Input style={{ width: "400px" }} size="middle" type="text" value={conteo.interseccion} onInput={handleChangeInterseccion} placeholder="Nombre de la intersección" /> <br /> <br />
                     }
-                    <Select style={{ width: "100%" }} size="middle" onChange={handleChangeInterseccion} placeholder="Seleccione el tipo de intersección" >
+                    <Select style={{ width: "100%" }} size="middle" onChange={handleChangeInterseccion} placeholder="Seleccione el tipo de intersección" defaultValue={conteo.interseccion} >
                         <Option value=""></Option>
                         <Option value="cruce-t1">cruce-t1</Option>
                         <Option value="cruce-t2">cruce-t2</Option>
