@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import { Button, InputNumber } from 'antd';
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons';
 
 function ContadorVehiculo(props) {
@@ -18,10 +18,18 @@ function ContadorVehiculo(props) {
         if (newCounter >= 0)
             setCounter(newCounter)
     }
+
+    function onChange(value) {
+        let newCounter = value
+        props.setValue(props.tipo_vehiculo, newCounter)
+        if (newCounter >= 0)
+            setCounter(newCounter)
+    }
+
     //TODO permitir que el número del botón sea editable
     return (
         <div key={props.tipo_vehiculo} className="card" >
-            <div className="large-font" >{counter}</div>
+            <InputNumber size="large" defaultValue={counter} value={counter} onChange={onChange}  ></InputNumber><br />
             <Button type="primary" icon={<PlusSquareOutlined />} size="large" onClick={() => add()} />
             <Button type="second" icon={<MinusSquareOutlined />} size="default" onClick={() => substract()} />
             <div>{props.tipo_vehiculo}</div>

@@ -45,7 +45,7 @@ function EditarConteo(props) {
     }
 
     return (
-        <> {console.log(conteo.fecha)}
+        <>
             <Row>
                 <Col span={4} offset={5} >
                     Dirección del conteo :
