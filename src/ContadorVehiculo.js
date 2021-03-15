@@ -26,7 +26,6 @@ function ContadorVehiculo(props) {
             setCounter(newCounter)
     }
 
-    //TODO permitir que el número del botón sea editable
     return (
         <div key={props.tipo_vehiculo} className="card" >
             <InputNumber size="large" defaultValue={counter} value={counter} onChange={onChange}  ></InputNumber><br />
