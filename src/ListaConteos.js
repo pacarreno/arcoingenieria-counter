@@ -11,7 +11,7 @@ function ListaConteos({ conteos, loading }) {
     const [loading2, setLoading2] = useState(false)
 
     const history = useHistory();
-    const handleClick = (conteo) => { try { setLoading2(true); history.push(`/editar/${conteo._id}`); } finally { setLoading2(false) } }
+    const handleClick = (conteo) => { try { history.push(`/editar/${conteo._id}`); } finally { } }
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -19,11 +19,16 @@ function ListaConteos({ conteos, loading }) {
             {text}
         </Space>
     );
-    // TODO cambiar al estado loading mientras se borrar
+
     const handleDeleteConteo = (e, conteo) => {
+
+        try {
+            setLoading2(true)
+            deleteConteo(conteo)
+        } finally {
+            setLoading2(false)
+        }
         e.stopPropagation();
-        deleteConteo(conteo)
-        return;
     }
 
     //TODO mejorar diseño de lista
@@ -50,7 +55,7 @@ function ListaConteos({ conteos, loading }) {
                         description={`fecha ${item.fecha} ${item.interseccion} ${item.movimiento} ${item.sentido}`}
                     />
                     {item.nombre}
-                    <Button type="primary" loading={loading2} onClick={(e) => { handleDeleteConteo(e, item); return false; }} >Eliminar</Button>
+                    <Button type="primary" loading={loading2} onClick={(e) => { handleDeleteConteo(e, item); }} >Eliminar</Button>
                 </ List.Item>
             )}
         />
