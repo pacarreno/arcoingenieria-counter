@@ -37,7 +37,7 @@ function App() {
           </Col>
         </Row>
       </Header>
-      <Content style={{ padding: '0 50px', marginTop: 70 }}>
+      <Content style={{ marginTop: 70 }}>
         <Switch>
           <Route path="/editar/:id" render={(props) => {
             const conteoId = props.location.pathname.replace("/editar/", "");

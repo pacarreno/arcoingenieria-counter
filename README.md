@@ -13,5 +13,4 @@ https://powerful-headland-69503.herokuapp.com/
 
 - TODO realizar testing
 - TODO quitar warnings
-- TODO diseño responsive
 - TODO agregar comportamiento offline y sincronización online

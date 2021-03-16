@@ -46,22 +46,19 @@ function EditarConteo(props) {
 
     return (
         <>
-            <Row>
-                <Col span={4} offset={5} >
+            <Row gutter={[16, 16]}>
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 6, offset: 4 }} >
                     Dirección del conteo :
                 </Col>
-                <Col span={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 10 }} >
                     <Input style={{ width: "100%" }} size="middle" type="text" value={conteo.nombre} onInput={handleChangeNombre} placeholder="Nombre de conteo" /> <br /> <br />
                 </Col>
             </Row>
             <Row>
-                <Col span={4} offset={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 6, offset: 4 }} >
                     Intersección :
                 </Col>
-                <Col span={5} >
-                    {
-                        //<Input style={{ width: "400px" }} size="middle" type="text" value={conteo.interseccion} onInput={handleChangeInterseccion} placeholder="Nombre de la intersección" /> <br /> <br />
-                    }
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 10 }} >
                     <Select style={{ width: "100%" }} size="middle" onChange={handleChangeInterseccion} placeholder="Seleccione el tipo de intersección" defaultValue={conteo.interseccion} >
                         <Option value=""></Option>
                         <Option value="cruce-t1">cruce-t1</Option>
@@ -71,8 +68,6 @@ function EditarConteo(props) {
                         <Option value="curva2">curva2</Option>
                         <Option value="rotonda">rotonda</Option>
                     </Select> <br /> <br />
-                </Col>
-                <Col span={4} offset={1} >
                     <img
                         alt={tipoCruce}
                         src={`/img/${tipoCruce != undefined ? tipoCruce : 'blank'}.jpg`}
@@ -80,10 +75,10 @@ function EditarConteo(props) {
                 </Col>
             </Row>
             <Row>
-                <Col span={4} offset={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 6, offset: 4 }} >
                     Fecha :
                 </Col>
-                <Col span={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 10 }} >
                     <DatePicker
                         defaultValue={conteo.fecha ? moment(conteo.fecha, 'YYYY-MM-DDTHH:mm:ss.SSSZ') : moment()}
                         style={{ width: "100%" }}
@@ -94,18 +89,18 @@ function EditarConteo(props) {
                 </Col>
             </Row>
             <Row>
-                <Col span={4} offset={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 6, offset: 4 }} >
                     Movimiento :
                 </Col>
-                <Col span={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 10 }} >
                     <Input style={{ width: "100%" }} size="middle" type="text" value={conteo.movimiento} onInput={handleChangeMovimiento} placeholder="Nombre de la intersección" /> <br /> <br />
                 </Col>
             </Row>
             <Row>
-                <Col span={4} offset={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 6, offset: 4 }} >
                     Sentido :
                 </Col>
-                <Col span={5} >
+                <Col xs={{ span: 14, offset: 2 }} md={{ span: 10 }} >
                     <Input style={{ width: "100%" }} size="middle" type="text" value={conteo.sentido} onInput={handleChangeSentido} placeholder="Nombre de la intersección" /> <br /> <br />
                 </Col>
             </Row>

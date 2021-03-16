@@ -1,3 +1,4 @@
+import { List } from 'antd';
 import React, { useState } from 'react';
 import ContadorVehiculo from './ContadorVehiculo'
 
@@ -19,22 +20,31 @@ function Contador(props) {
     ]
     //TODO mejorar diseño de botones
     return (
-        <div>
-            <h2>{props.conteoInfo.nombre}</h2>
-            <div className="wrapper" >
-                {
-                    keys.map(function (element, i) {
-                        return (
-                            <ContadorVehiculo
-                                key={i}
-                                tipo_vehiculo={element}
-                                valor={props.conteoInfo.contadores[element]}
-                                setValue={(tipo_vehiculo, valor) => props.setValue(tipo_vehiculo, valor)} />
-                        )
-                    })
-                }
-            </div>
-        </div>
+        <>
+            <h1 style={{ textAlign: 'center' }} ><strong>Dirección del Conteo:</strong> {props.conteoInfo.nombre}</h1>
+            <List
+                grid={{
+                    gutter: 16,
+                    xs: 1,
+                    sm: 1,
+                    md: 2,
+                    lg: 3,
+                    xl: 4,
+                    xxl: 4,
+                }}
+                dataSource={keys}
+                renderItem={element => (
+                    <List.Item
+                        key={element}
+                    >
+                        <ContadorVehiculo
+                            tipo_vehiculo={element}
+                            valor={props.conteoInfo.contadores[element]}
+                            setValue={(tipo_vehiculo, valor) => props.setValue(tipo_vehiculo, valor)} />
+                    </List.Item>
+                )}
+            />
+        </>
     );
 }
 
