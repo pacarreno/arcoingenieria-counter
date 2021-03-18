@@ -5,7 +5,6 @@ import ConteoItem from "./ConteoItem";
 
 function ListaConteos({ conteos, loading }) {
 
-    //TODO mejorar diseño de lista
     //TODO paginacion
     return loading ? (
         <Loading />
