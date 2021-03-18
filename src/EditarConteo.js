@@ -70,7 +70,7 @@ function EditarConteo(props) {
                     </Select> <br /> <br />
                     <img
                         alt={tipoCruce}
-                        src={`/img/${tipoCruce != undefined ? tipoCruce : 'blank'}.jpg`}
+                        src={`/img/${tipoCruce !== undefined ? tipoCruce : 'blank'}.jpg`}
                     />
                 </Col>
             </Row>

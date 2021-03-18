@@ -1,5 +1,5 @@
 import { List } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import ContadorVehiculo from './ContadorVehiculo'
 
 function Contador(props) {

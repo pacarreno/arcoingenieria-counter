@@ -1,18 +1,17 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch, useHistory, Link } from 'react-router-dom';
 import Contador from './Contador';
 import NotFound from './NotFound';
 import EditarConteo from './EditarConteo';
 import ListaConteos from './ListaConteos';
-import { Layout, Input, Row, Col, Button } from 'antd';
+import { Layout, Row, Col, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import useConteos from "./graphql/useConteos";
 import _ from "lodash";
-import moment from 'moment';
 
 const { Header, Content, Footer } = Layout;
-const { Search } = Input;
+//const { Search } = Input;
 
 function App() {
 
@@ -41,7 +40,7 @@ function App() {
         <Switch>
           <Route path="/editar/:id" render={(props) => {
             const conteoId = props.location.pathname.replace("/editar/", "");
-            const conteo = conteos.find(el => el._id == conteoId);
+            const conteo = conteos.find(el => el._id === conteoId);
             if (!_.isObject(conteo))
               return <NotFound />
             return <EditarConteo conteo={conteo} />
@@ -51,7 +50,7 @@ function App() {
           </Route>
           <Route path="/contador/:id" render={(props) => {
             const conteoId = props.location.pathname.replace("/contador/", "");
-            const conteoPos = conteos.findIndex(el => el._id == conteoId);
+            const conteoPos = conteos.findIndex(el => el._id === conteoId);
             const conteo = conteos[conteoPos];
             if (!_.isObject(conteo))
               return <NotFound />
