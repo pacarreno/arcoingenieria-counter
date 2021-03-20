@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
 import { Route, Switch, useHistory, Link } from 'react-router-dom';
-import Contador from './Contador';
-import NotFound from './NotFound';
-import EditarConteo from './EditarConteo';
-import ListaConteos from './ListaConteos';
+import Contador from './componentes/contador/version-list/Contador';
+import NotFound from './componentes/no_encontrado/NotFound';
+import EditarConteo from './componentes/editar/EditarConteo';
+import ListaConteos from './componentes/lista/ListaConteos';
 import { Layout, Row, Col, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import useConteos from "./graphql/useConteos";

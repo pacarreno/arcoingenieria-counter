@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import RealmApolloProvider from "./graphql/RealmApolloProvider";
 import { useRealmApp, RealmAppProvider } from "./RealmApp";
-import LoginScreen from "./componentes/LoginScreen";
+import LoginScreen from "./componentes/login/LoginScreen";
 
 export const APP_ID = "arcoingenieria-contador-eauzs";
 

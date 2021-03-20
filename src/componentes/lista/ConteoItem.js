@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { List, Popconfirm, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import useConteos from "./graphql/useConteos";
+import useConteos from "../../graphql/useConteos";
 import { DeleteOutlined } from '@ant-design/icons';
 import moment from 'moment';
 

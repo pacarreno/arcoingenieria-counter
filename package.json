@@ -24,6 +24,7 @@
     "graphql-tag": "^2.11.0",
     "lodash": "^4.17.21",
     "omit-deep": "^0.3.0",
+    "randomcolor": "^0.6.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

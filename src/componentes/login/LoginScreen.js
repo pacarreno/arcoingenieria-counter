@@ -1,13 +1,13 @@
 import React from "react";
 import * as Realm from "realm-web";
-import { useRealmApp } from "../RealmApp";
+import { useRealmApp } from "../../RealmApp";
 import styled from "@emotion/styled";
 import Button from "@leafygreen-ui/button";
 import TextInput from "@leafygreen-ui/text-input";
 import LGCard from "./Card";
 import { uiColors } from "@leafygreen-ui/palette";
 import validator from "validator";
-import Loading from "./Loading";
+import Loading from "../util/Loading";
 
 export default function LoginScreen() {
   const app = useRealmApp();
@@ -80,8 +80,8 @@ export default function LoginScreen() {
                 error.email
                   ? "error"
                   : validator.isEmail(email)
-                  ? "valid"
-                  : "none"
+                    ? "valid"
+                    : "none"
               }
               errorMessage={error.email}
             />

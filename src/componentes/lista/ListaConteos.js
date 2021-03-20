@@ -1,6 +1,6 @@
 import React from 'react';
 import { List } from 'antd';
-import Loading from "./componentes/Loading";
+import Loading from "../util/Loading";
 import ConteoItem from "./ConteoItem";
 
 function ListaConteos({ conteos, loading }) {

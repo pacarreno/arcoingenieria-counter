@@ -4,8 +4,8 @@ import { Row, Col, Button, Input, DatePicker, Select } from 'antd';
 import { useHistory } from 'react-router-dom';
 import _ from "lodash";
 
-import useConteos from "./graphql/useConteos";
-import { useRealmApp } from "./RealmApp";
+import useConteos from "../../graphql/useConteos";
+import { useRealmApp } from "../../RealmApp";
 
 const { Option } = Select;
 
