@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, InputNumber, List } from 'antd';
-import { PlusSquareOutlined, MinusSquareOutlined, CarOutlined } from '@ant-design/icons';
+import { MinusOutlined, CarOutlined } from '@ant-design/icons';
 
 function ContadorVehiculo({ tipo_vehiculo, valor, setValue, backGroundColor }) {
 
@@ -30,12 +30,10 @@ function ContadorVehiculo({ tipo_vehiculo, valor, setValue, backGroundColor }) {
         <List.Item
             key={tipo_vehiculo}
             actions={[
-                <InputNumber size="large" defaultValue={counter} value={counter} onChange={onChange}  ></InputNumber>,
-                <Button type="primary" icon={<PlusSquareOutlined />} size="large" onClick={() => add()} />,
-                <Button type="second" icon={<MinusSquareOutlined />} size="default" onClick={() => substract()} />
+                <InputNumber size="middle" style={{ width: 50 }} defaultValue={counter} value={counter} onChange={onChange}  ></InputNumber>,
+                <Button type="danger" icon={<MinusOutlined />} size="default" onClick={() => substract()} />
             ]}
             onClick={() => add()}
-            style={{ margin: '0 50px' }}
         >
             <List.Item.Meta
                 avatar={
