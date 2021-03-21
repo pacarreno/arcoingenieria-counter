@@ -6,6 +6,8 @@ import _ from "lodash";
 
 import useConteos from "../../graphql/useConteos";
 import { useRealmApp } from "../../RealmApp";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 const { Option } = Select;
 
@@ -42,6 +44,17 @@ function EditarConteo(props) {
         } finally {
             setLoading(false)
         }
+    }
+
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const fileExtension = '.xlsx';
+
+    const exportToCSV = (csvData, fileName) => {
+        const ws = XLSX.utils.json_to_sheet(csvData);
+        const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const data = new Blob([excelBuffer], { type: fileType });
+        FileSaver.saveAs(data, fileName + fileExtension);
     }
 
     return (
@@ -108,6 +121,10 @@ function EditarConteo(props) {
                 <Col span={4} offset={9}  >
                     <Button type="primary" loading={loading} onClick={() => handleClick()} >{!conteo._id ? "Iniciar nuevo Conteo" : "Ver Conteo"}</Button>
                 </Col>
+                {
+                    conteo._id &&
+                    <Button variant="warning" onClick={(e) => exportToCSV(Object.entries(conteo.contadores), "ejemplo")}>Export</Button>
+                }
             </Row>
         </>
     );

@@ -20,6 +20,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.6.1",
+    "file-saver": "^2.0.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "lodash": "^4.17.21",
@@ -31,7 +32,8 @@
     "react-scripts": "^4.0.3",
     "react-spinners": "^0.10.6",
     "realm-web": "^1.2.1",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "xlsx": "^0.16.9"
   },
   "scripts": {
     "start": "react-scripts start",

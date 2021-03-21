@@ -13,3 +13,5 @@ https://powerful-headland-69503.herokuapp.com/
 
 - TODO realizar testing
 - TODO agregar comportamiento offline y sincronización online
+- TODO descargar excel
+- TODO generar Excel
